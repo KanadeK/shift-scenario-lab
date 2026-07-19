@@ -31,8 +31,10 @@ class SimulationService:
             "input_rows": len(self.rows),
             "cost_matrix": self.costs.model_dump(),
             "result": result.model_dump(),
-            "disclaimer": "This report is a sensitivity simulation, not a causal claim or deployment decision.",
+            "disclaimer": (
+                "This report is a sensitivity simulation, not a causal claim "
+                "or deployment decision."
+            ),
         }
         destination.parent.mkdir(parents=True, exist_ok=True)
         destination.write_text(json.dumps(payload, indent=2), encoding="utf-8")
-

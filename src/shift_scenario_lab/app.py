@@ -12,13 +12,13 @@ from shift_scenario_lab.adapters.csv_input import (
     load_predictions,
     load_predictions_bytes,
 )
-from shift_scenario_lab.domain.models import CostMatrix, Scenario, SimulationResult
+from shift_scenario_lab.domain.models import CostMatrix, PredictionRow, Scenario, SimulationResult
 from shift_scenario_lab.services.simulator import SimulationService
 
 PROJECT_ROOT = Path(__file__).resolve().parents[2]
 
 
-def _load_data() -> tuple[list, CostMatrix]:
+def _load_data() -> tuple[list[PredictionRow], CostMatrix]:
     prediction_upload = st.sidebar.file_uploader("Predictions CSV", type="csv")
     cost_upload = st.sidebar.file_uploader("Cost matrix JSON", type="json")
     rows = (
@@ -67,8 +67,13 @@ def _comparison_table(results: list[SimulationResult]) -> None:
 def main() -> None:
     st.set_page_config(page_title="Shift Scenario Lab", page_icon="📊", layout="wide")
     st.title("Shift Scenario Lab")
-    st.caption("Pre-deployment sensitivity simulations for thresholds, score shifts, and class mix.")
-    st.warning("Association simulation only. These outputs are not causal conclusions or deployment advice.")
+    st.caption(
+        "Pre-deployment sensitivity simulations for thresholds, score shifts, and class mix."
+    )
+    st.warning(
+        "Association simulation only. These outputs are not causal conclusions "
+        "or deployment advice."
+    )
     if "saved" not in st.session_state:
         st.session_state.saved = []
 
@@ -127,7 +132,11 @@ def main() -> None:
         indent=2,
     )
     report.download_button(
-        "Download scenario report", payload, file_name="scenario-report.json", mime="application/json", width="stretch"
+        "Download scenario report",
+        payload,
+        file_name="scenario-report.json",
+        mime="application/json",
+        width="stretch",
     )
     st.subheader("Saved scenario comparison")
     _comparison_table(st.session_state.saved)

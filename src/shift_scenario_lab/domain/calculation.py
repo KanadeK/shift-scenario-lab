@@ -18,9 +18,15 @@ def _weight_for_prevalence(row: PredictionRow, baseline: float, target: float | 
 
 
 def _metrics(confusion: ConfusionMatrix, costs: CostMatrix) -> Metrics:
-    precision = _safe_divide(confusion.true_positive, confusion.true_positive + confusion.false_positive)
-    recall = _safe_divide(confusion.true_positive, confusion.true_positive + confusion.false_negative)
-    approval_rate = _safe_divide(confusion.true_positive + confusion.false_positive, confusion.total)
+    precision = _safe_divide(
+        confusion.true_positive, confusion.true_positive + confusion.false_positive
+    )
+    recall = _safe_divide(
+        confusion.true_positive, confusion.true_positive + confusion.false_negative
+    )
+    approval_rate = _safe_divide(
+        confusion.true_positive + confusion.false_positive, confusion.total
+    )
     total_cost = (
         confusion.false_positive * costs.false_positive_cost
         + confusion.false_negative * costs.false_negative_cost
@@ -83,4 +89,3 @@ def evaluate(rows: list[PredictionRow], scenario: Scenario, costs: CostMatrix) -
         by_group={group: _metrics(matrix, costs) for group, matrix in sorted(matrices.items())},
         assumptions=assumptions,
     )
-

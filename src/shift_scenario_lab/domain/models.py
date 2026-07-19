@@ -61,4 +61,3 @@ class SimulationResult(BaseModel):
     overall: Metrics
     by_group: dict[str, Metrics]
     assumptions: list[str]
-

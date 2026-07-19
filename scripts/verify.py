@@ -1,4 +1,5 @@
 """Cross-platform verification entry point."""
+
 from __future__ import annotations
 
 import subprocess
@@ -13,4 +14,3 @@ COMMANDS = [
 
 for command in COMMANDS:
     subprocess.run(command, check=True)
-

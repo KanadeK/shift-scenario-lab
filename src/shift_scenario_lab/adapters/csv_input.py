@@ -36,7 +36,10 @@ def _validate_prediction_frame(frame: pl.DataFrame) -> list[PredictionRow]:
     if missing:
         raise ValueError(f"CSV missing required columns: {', '.join(sorted(missing))}")
     try:
-        selected = frame.select(sorted(REQUIRED_COLUMNS)).drop_nulls()
+        selected = frame.select(sorted(REQUIRED_COLUMNS))
+        selected = selected.filter(
+            ~pl.all_horizontal([pl.col(column).is_null() for column in selected.columns])
+        )
         return [PredictionRow.model_validate(row) for row in selected.to_dicts()]
     except ValidationError as exc:
         raise ValueError(f"invalid prediction row: {exc}") from exc
