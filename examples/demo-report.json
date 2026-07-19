@@ -1,5 +1,4 @@
 {
-  "generated_at": "2026-07-19T10:42:15.895796+00:00",
   "input_rows": 36,
   "cost_matrix": {
     "true_positive_value": 150.0,

@@ -1,7 +1,6 @@
 from __future__ import annotations
 
 import json
-from datetime import UTC, datetime
 from pathlib import Path
 
 from ..domain.calculation import evaluate
@@ -27,7 +26,6 @@ class SimulationService:
 
     def export_report(self, result: SimulationResult, destination: Path) -> None:
         payload = {
-            "generated_at": datetime.now(UTC).isoformat(),
             "input_rows": len(self.rows),
             "cost_matrix": self.costs.model_dump(),
             "result": result.model_dump(),
