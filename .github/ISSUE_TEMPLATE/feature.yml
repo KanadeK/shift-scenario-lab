@@ -1,0 +1,9 @@
+name: Feature request
+description: Propose a user problem and a measurable outcome
+body:
+  - type: textarea
+    attributes:
+      label: Problem and proposal
+    validations:
+      required: true
+
