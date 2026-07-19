@@ -23,4 +23,3 @@ def test_service_saves_compares_and_exports_report(tmp_path: Path) -> None:
     assert [item.scenario.name for item in service.compare()] == ["candidate", "strict"]
     assert payload["input_rows"] == 2
     assert "not a causal claim" in payload["disclaimer"]
-

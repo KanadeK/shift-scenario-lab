@@ -5,7 +5,6 @@ import pytest
 from shift_scenario_lab.domain.calculation import evaluate
 from shift_scenario_lab.domain.models import CostMatrix, PredictionRow, Scenario
 
-
 ROWS = [
     PredictionRow(prediction=0.9, actual=1, group="A"),
     PredictionRow(prediction=0.8, actual=0, group="A"),
@@ -58,4 +57,3 @@ def test_single_class_cannot_simulate_class_mix() -> None:
     rows = [PredictionRow(prediction=0.7, actual=1, group="A")]
     with pytest.raises(ValueError, match="both positive"):
         evaluate(rows, Scenario(name="bad", target_positive_rate=0.4), CostMatrix())
-

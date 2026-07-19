@@ -4,7 +4,6 @@ from pathlib import Path
 
 from streamlit.testing.v1 import AppTest
 
-
 APP = Path("src/shift_scenario_lab/app.py")
 
 

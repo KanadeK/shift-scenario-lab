@@ -7,6 +7,7 @@ from pathlib import Path
 
 from shift_scenario_lab import cli
 
+
 def test_demo_user_path_creates_a_real_report(tmp_path: Path) -> None:
     output = tmp_path / "report.json"
     completed = subprocess.run(
@@ -26,7 +27,16 @@ def test_cli_user_path_rejects_bad_input(tmp_path: Path) -> None:
     output = tmp_path / "report.json"
     bad.write_text("prediction,actual\n0.5,1\n", encoding="utf-8")
     completed = subprocess.run(
-        [sys.executable, "-m", "shift_scenario_lab.cli", "run", "--input", str(bad), "--output", str(output)],
+        [
+            sys.executable,
+            "-m",
+            "shift_scenario_lab.cli",
+            "run",
+            "--input",
+            str(bad),
+            "--output",
+            str(output),
+        ],
         capture_output=True,
         text=True,
     )

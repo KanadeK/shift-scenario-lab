@@ -32,6 +32,13 @@ def test_rejects_non_binary_csv_values(tmp_path: Path) -> None:
         load_predictions(path)
 
 
+def test_rejects_partially_missing_rows_instead_of_silently_dropping_them(tmp_path: Path) -> None:
+    path = tmp_path / "partial.csv"
+    path.write_text("prediction,actual,group\n0.5,1,\n", encoding="utf-8")
+    with pytest.raises(ValueError, match="invalid prediction row"):
+        load_predictions(path)
+
+
 def test_rejects_missing_cost_file(tmp_path: Path) -> None:
     with pytest.raises(FileNotFoundError):
         load_cost_matrix(tmp_path / "nope.json")

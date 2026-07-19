@@ -15,4 +15,3 @@ def test_only_binary_labels_allowed(actual: int) -> None:
 def test_invalid_threshold_is_rejected() -> None:
     with pytest.raises(ValidationError):
         Scenario(name="invalid", threshold=1.1)
-
