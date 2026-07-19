@@ -1,0 +1,7 @@
+{
+  "true_positive_value": 150,
+  "false_positive_cost": 80,
+  "false_negative_cost": 200,
+  "true_negative_value": 0
+}
+

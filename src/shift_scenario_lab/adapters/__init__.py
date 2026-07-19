@@ -1,0 +1,2 @@
+"""Local input adapters."""
+

@@ -1,0 +1,79 @@
+{
+  "generated_at": "2026-07-19T10:42:15.895796+00:00",
+  "input_rows": 36,
+  "cost_matrix": {
+    "true_positive_value": 150.0,
+    "false_positive_cost": 80.0,
+    "false_negative_cost": 200.0,
+    "true_negative_value": 0.0
+  },
+  "result": {
+    "scenario": {
+      "name": "demo",
+      "threshold": 0.5,
+      "score_shift": 0.0,
+      "target_positive_rate": null,
+      "note": ""
+    },
+    "overall": {
+      "precision": 0.5833333333333334,
+      "recall": 0.7777777777777778,
+      "approval_rate": 0.6666666666666666,
+      "total_cost": 1600.0,
+      "net_value": 500.0,
+      "confusion": {
+        "true_positive": 14.0,
+        "false_positive": 10.0,
+        "false_negative": 4.0,
+        "true_negative": 8.0
+      }
+    },
+    "by_group": {
+      "rural": {
+        "precision": 0.5714285714285714,
+        "recall": 0.6666666666666666,
+        "approval_rate": 0.5833333333333334,
+        "total_cost": 640.0,
+        "net_value": -40.0,
+        "confusion": {
+          "true_positive": 4.0,
+          "false_positive": 3.0,
+          "false_negative": 2.0,
+          "true_negative": 3.0
+        }
+      },
+      "small_business": {
+        "precision": 0.625,
+        "recall": 0.8333333333333334,
+        "approval_rate": 0.6666666666666666,
+        "total_cost": 440.0,
+        "net_value": 310.0,
+        "confusion": {
+          "true_positive": 5.0,
+          "false_positive": 3.0,
+          "false_negative": 1.0,
+          "true_negative": 3.0
+        }
+      },
+      "urban": {
+        "precision": 0.5555555555555556,
+        "recall": 0.8333333333333334,
+        "approval_rate": 0.75,
+        "total_cost": 520.0,
+        "net_value": 230.0,
+        "confusion": {
+          "true_positive": 5.0,
+          "false_positive": 4.0,
+          "false_negative": 1.0,
+          "true_negative": 2.0
+        }
+      }
+    },
+    "assumptions": [
+      "Scores are shifted additively and clamped to [0, 1].",
+      "Class-mix changes reweight observed labels; they do not synthesize individuals.",
+      "Results show simulated association under stated assumptions, not causal effects."
+    ]
+  },
+  "disclaimer": "This report is a sensitivity simulation, not a causal claim or deployment decision."
+}
