@@ -24,6 +24,3 @@ jobs:
         with:
           name: release-assets
           path: dist-release/
-      - run: gh release create "$GITHUB_REF_NAME" dist-release/* --generate-notes
-        env:
-          GH_TOKEN: ${{ github.token }}
